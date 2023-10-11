@@ -38,7 +38,7 @@
 
 .post__content__text {
   height: 200px;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .post__content__date {

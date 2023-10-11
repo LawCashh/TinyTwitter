@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 function Header({ loggedIn, changeLoginState }) {
   const handleLogout = () => {
-    Cookies.remove("myCookie");
+    Cookies.remove("loggedIn");
     changeLoginState();
   };
   return (
@@ -30,7 +30,11 @@ function Header({ loggedIn, changeLoginState }) {
           </NavLink>
         )}
         {loggedIn && (
-          <NavLink className={styles.nav__list__item} onClick={handleLogout}>
+          <NavLink
+            to="/"
+            className={styles.nav__list__item}
+            onClick={handleLogout}
+          >
             Logout
           </NavLink>
         )}

@@ -3,7 +3,7 @@ import styles from "./PostUser.module.css";
 import userImage from "./assets/images/user.svg";
 
 function PostUser({ userId }) {
-  console.log(userId);
+  // console.log(userId);
   const { data, isLoading } = useQuery({
     queryKey: ["user:", userId],
     queryFn: async () => {
@@ -19,7 +19,7 @@ function PostUser({ userId }) {
     },
   });
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className={styles.post__user}>
       {isLoading && <p>Loading user...</p>}

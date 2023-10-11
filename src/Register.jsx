@@ -1,9 +1,10 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
 
-function Register() {
+function Register({ loggedIn }) {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [error, dispatchErr] = useReducer(
     (state, action) => {
       if (action.type === "err")
@@ -32,10 +33,15 @@ function Register() {
     dispatch({ type: "pw", payload: event.target.value });
   };
 
+  useEffect(() => {
+    if (loggedIn) navigate("/profile");
+  }, [loggedIn, navigate]);
+
   const handleForm = async (event) => {
+    setIsLoading(true);
     event.preventDefault();
     const { username, password } = registerData;
-    console.log(username, password);
+    // console.log(username, password);
     if (password.length < 8) {
       dispatchErr({
         type: "err",
@@ -55,42 +61,47 @@ function Register() {
           body: JSON.stringify({ username: username, password: password }),
         }
       );
-      console.log(registerFetch);
       const message = await registerFetch.json();
-      console.log(message);
       if (registerFetch.status === 201) {
         dispatchErr({ type: "reset" });
+        setIsLoading(false);
         navigate("/login");
-      } else dispatchErr({ type: "err", payload: JSON.stringify(message) });
+      } else {
+        setIsLoading(false);
+        dispatchErr({ type: "err", payload: JSON.stringify(message) });
+      }
     } catch (error) {
-      console.error("Registration failed:", error);
+      setIsLoading(false);
+      dispatchErr({ type: "err", payload: JSON.stringify(error) });
     }
-    console.log(error.message);
   };
   return (
     <div className={styles.register}>
-      {error && <p>{error.message}</p>}
-      <form className={styles.register__form} onSubmit={handleForm}>
-        <p className={styles.register__form__usernametitle}>Username:</p>
-        <input
-          className={styles.register__form__usernameinput}
-          id="usernameInput"
-          type="text"
-          placeholder="Unesi username.."
-          onChange={updateUsername}
-        />
-        <p className={styles.register__form__passwordtitle}>Password:</p>
-        <input
-          className={styles.register__form__passwordinput}
-          id="passwordInput"
-          type="password"
-          placeholder="Unesi sifru.."
-          onChange={updatePassword}
-        />
-        <button className={styles.register__form__submitbutton}>
-          Register
-        </button>
-      </form>
+      {error && !isLoading && <p>{error.message}</p>}
+      {!isLoading && (
+        <form className={styles.register__form} onSubmit={handleForm}>
+          <p className={styles.register__form__usernametitle}>Username:</p>
+          <input
+            className={styles.register__form__usernameinput}
+            id="usernameInput"
+            type="text"
+            placeholder="Unesi username.."
+            onChange={updateUsername}
+          />
+          <p className={styles.register__form__passwordtitle}>Password:</p>
+          <input
+            className={styles.register__form__passwordinput}
+            id="passwordInput"
+            type="password"
+            placeholder="Unesi sifru.."
+            onChange={updatePassword}
+          />
+          <button className={styles.register__form__submitbutton}>
+            Register
+          </button>
+        </form>
+      )}
+      {isLoading && <p>Loading</p>}
     </div>
   );
 }
