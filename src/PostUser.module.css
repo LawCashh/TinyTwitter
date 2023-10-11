@@ -1,0 +1,19 @@
+.post__user {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+}
+
+.post__user__image {
+  height: 70px;
+  width: 70px;
+  align-self: flex-end;
+}
+
+.post__user__username {
+  text-align: center;
+  align-self: flex-start;
+  margin: 0;
+  margin-top: 20px;
+  max-height: calc(100% - 20px);
+}
