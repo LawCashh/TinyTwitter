@@ -1,0 +1,46 @@
+.profilePage {
+  min-height: calc(100vh - 2 * 75px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  margin: 30px;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px 0 5px rgba(0, 0, 0, 0.2);
+}
+.profile__img {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+.profile__username {
+  margin: 10px;
+  font-size: 1.8em;
+}
+.profile__description {
+  margin: 10px;
+  overflow: scroll;
+}
+
+.createPostButton {
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.createPostButton:hover {
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px 0 5px rgba(0, 0, 0, 0.2);
+}

@@ -1,7 +1,12 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
+import Cookies from "js-cookie";
 
-function Header({ loggedIn }) {
+function Header({ loggedIn, changeLoginState }) {
+  const handleLogout = () => {
+    Cookies.remove("myCookie");
+    changeLoginState();
+  };
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>TinyTwitter</div>
@@ -20,7 +25,14 @@ function Header({ loggedIn }) {
           </NavLink>
         )}
         {loggedIn && (
-          <NavLink className={styles.nav__list__item}>Logout</NavLink>
+          <NavLink to="/profile" className={styles.nav__list__item}>
+            Profile
+          </NavLink>
+        )}
+        {loggedIn && (
+          <NavLink className={styles.nav__list__item} onClick={handleLogout}>
+            Logout
+          </NavLink>
         )}
       </ul>
     </nav>

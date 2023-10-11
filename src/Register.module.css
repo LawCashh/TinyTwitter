@@ -1,4 +1,4 @@
-.login {
+.register {
   min-height: calc(100vh - 2 * 75px);
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.login__form {
+.register__form {
   height: auto;
   width: 600px;
   margin-top: 20px;
@@ -16,28 +16,28 @@
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
-.login__form__usernametitle {
+.register__form__usernametitle {
   font-size: 1.5em;
   margin: 20px;
 }
-.login__form__usernameinput {
+.register__form__usernameinput {
   padding: 10px;
   font-size: 1em;
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px 0px 5px rgba(0, 0, 0, 0.2);
 }
-.login__form__passwordtitle {
+.register__form__passwordtitle {
   font-size: 1.5em;
 }
-.login__form__passwordinput {
+.register__form__passwordinput {
   padding: 10px;
   font-size: 1em;
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), -2px 0px 5px rgba(0, 0, 0, 0.2);
 }
-.login__form__submitbutton {
+.register__form__submitbutton {
   font-size: 1em;
   padding: 10px;
   width: 100px;
@@ -47,7 +47,7 @@
   border-radius: 5px;
 }
 
-.login__form__submitbutton:hover {
+.register__form__submitbutton:hover {
   cursor: pointer;
   color: black;
   background-color: white;
